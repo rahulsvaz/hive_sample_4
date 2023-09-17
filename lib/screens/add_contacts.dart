@@ -28,7 +28,14 @@ class AddTodo extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(onPressed: () {}, child: const Text('Save'))
+            ElevatedButton(
+                onPressed: () {
+                  Contacts contacts = Contacts(
+                      name: nameController.text.toString(),
+                      number: numberController.text.toString());
+                  contactBox.add(contacts);
+                },
+                child: const Text('Save'))
           ],
         ),
       ),
