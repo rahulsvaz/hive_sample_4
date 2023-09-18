@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_sample_4/models/contact_model.dart';
+import 'package:hive_sample_4/screens/home.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -19,6 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return const MaterialApp(
+      
+      debugShowCheckedModeBanner: false,
+      
+      home: HomeScreen(),
+    );
   }
 }

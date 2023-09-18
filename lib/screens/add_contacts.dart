@@ -23,6 +23,7 @@ class AddTodo extends StatelessWidget {
               height: 10,
             ),
             TextField(
+              keyboardType: TextInputType.phone,
               controller: numberController,
             ),
             const SizedBox(
@@ -30,12 +31,29 @@ class AddTodo extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Contacts contacts = Contacts(
-                      name: nameController.text.toString(),
-                      number: numberController.text.toString());
-                  contactBox.add(contacts);
+                  if (numberController.text.isNotEmpty &&
+                      nameController.text.isNotEmpty) {
+                    Contacts contacts = Contacts(
+                        name: nameController.text.toString(),
+                        number: numberController.text.toString());
+
+                    contactBox.add(contacts);
+                    nameController.clear();
+                    numberController.clear();
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Contact saved successfully')));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Add Name and number')));
+                  }
                 },
-                child: const Text('Save'))
+                child: const Text('Save')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Back'))
           ],
         ),
       ),
